@@ -5,9 +5,11 @@ const Option = props => (
     <p className="option__text">{props.count}. {props.optionText}</p>
     <button
       className="button button--link"
-      onClick={e => {
-        props.handleDeleteOption(props.optionText);
-      }}
+      // This is how I had it originally but I refactored it
+      // onClick={e => {
+      //   props.handleDeleteOption(props.optionText);
+      // }}
+      onClick={props.handleDeleteOption(props.optionText)}
     >
       remove
     </button>

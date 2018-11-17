@@ -2,6 +2,13 @@ import React from "react";
 import Option from "./Option";
 
 const Options = props => {
+
+  // Constructs valid JSX for each option in the array
+  // Containing
+  // key(required by React)
+  // optionText(actual content)
+  // count(used to display which number the option is)
+  // handleDeleteOption(passing a function to delete a single option)
   const options = props.options.map((option, index) => (
     <Option
       key={option}

@@ -11,10 +11,16 @@ export default class IndecisionApp extends React.Component {
     selectedOption: undefined
   };
 
+  // ==========================================
+  // Handler Functions
+  // ==========================================
+
+  // Will delete all options
   handleDeleteOptions = () => {
     this.setState(() => ({ options: [] }));
   };
 
+  // Will delete a single selected option
   handleDeleteOption = optionToRemove => {
     this.setState(prevState => ({
       options: prevState.options.filter(option => {
@@ -23,12 +29,14 @@ export default class IndecisionApp extends React.Component {
     }));
   };
 
+  // Will ramdonly pick an option
   handlePick = () => {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum];
     this.setState(() => ({ selectedOption: option }));
   };
 
+  // Option validation agaist duplicates or empty entries
   handleAddOption = option => {
     if (!option) {
       return "Enter valid value to add item";
@@ -39,10 +47,16 @@ export default class IndecisionApp extends React.Component {
     this.setState(prevState => ({ options: prevState.options.concat(option) }));
   };
 
+  // Remove the selected option picked by the ramdon generator
   handleClearSelectedOption = () => {
     this.setState(() => ({ selectedOption: undefined }));
   };
 
+  // ==========================================
+  // LifeCycle Components
+  // ==========================================
+
+  // Upon loading checks if local data is present
   componentDidMount() {
     try {
       const json = localStorage.getItem("options");
@@ -56,6 +70,7 @@ export default class IndecisionApp extends React.Component {
     }
   }
 
+  // Every time data is changed it will be saved to local storage
   componentDidUpdate(prevProps, prevState) {
     if (prevState.options.length !== this.state.options.length) {
       const json = JSON.stringify(this.state.options);
@@ -68,6 +83,9 @@ export default class IndecisionApp extends React.Component {
     console.log("component will umount");
   }
 
+  // ==========================================
+  // Render Template
+  // ==========================================
   render() {
     return (
       <div>

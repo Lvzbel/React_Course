@@ -1,21 +1,25 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from "react-dom";
-import AppRouter from './routers/AppRouter'
-import configureStore from './store/configureStore';
+import { Provider } from "react-redux";
+import AppRouter from "./routers/AppRouter";
+import configureStore from "./store/configureStore";
+import { addExpense } from "./actions/expenses";
+import { setTextFilter } from "./actions/filters.js";
 import "normalize.css/normalize.css";
 import "./styles/styles.scss";
-// Chanllenge imports
-import { addExpense } from './actions/expenses';
-import { setTextFilter } from './actions/filters.js';
-import getVisibleExpenses from './selectors/expenses';
 
 const store = configureStore();
 
-store.subscribe(() => {
-  const state = store.getState();
-  const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-  console.log(visibleExpenses);
-});
+// This function will console.log every time it there is  changed made
+// store.subscribe(() => {
+//   const state = store.getState();
+//   const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+//   console.log(visibleExpenses);
+// });
+
+// const state = store.getState();
+// const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+// console.log(visible)
 
 const expenseOne = store.dispatch(
   addExpense({
@@ -33,7 +37,17 @@ const expenseTwo = store.dispatch(
   })
 );
 
-store.dispatch(setTextFilter('bill'));
-store.dispatch(setTextFilter('water'));
+const jsx = (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
+);
 
-ReactDOM.render(<AppRouter />, document.querySelector("#app"));
+store.dispatch(setTextFilter("bill"));
+store.dispatch(setTextFilter("water"));
+
+// setTimeout(() => {
+//   store.dispatch(setTextFilter('rent'));
+// }, 3000)
+
+ReactDOM.render(jsx, document.querySelector("#app"));

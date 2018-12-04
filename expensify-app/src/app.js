@@ -21,19 +21,27 @@ const store = configureStore();
 // const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 // console.log(visible)
 
-const expenseOne = store.dispatch(
+store.dispatch(
   addExpense({
     description: "Water bill",
-    amount: 400,
+    amount: 4500,
     createAt: -21000
   })
 );
 
-const expenseTwo = store.dispatch(
+store.dispatch(
   addExpense({
     description: "Gas bill",
-    amount: 400,
-    createAt: -21000
+    amount: 1000,
+    createAt: 0
+  })
+);
+
+store.dispatch(
+  addExpense({
+    description: "Rent",
+    amount: 10950,
+    createAt: 1000
   })
 );
 
@@ -43,8 +51,8 @@ const jsx = (
   </Provider>
 );
 
-store.dispatch(setTextFilter("bill"));
-store.dispatch(setTextFilter("water"));
+// store.dispatch(setTextFilter("bill"));
+// store.dispatch(setTextFilter("water"));
 
 // setTimeout(() => {
 //   store.dispatch(setTextFilter('rent'));

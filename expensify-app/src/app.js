@@ -25,7 +25,7 @@ store.dispatch(
   addExpense({
     description: "Water bill",
     amount: 4500,
-    createAt: -21000
+    createdAt: -21000
   })
 );
 
@@ -33,7 +33,7 @@ store.dispatch(
   addExpense({
     description: "Gas bill",
     amount: 1000,
-    createAt: 0
+    createdAt: 0
   })
 );
 
@@ -41,7 +41,7 @@ store.dispatch(
   addExpense({
     description: "Rent",
     amount: 10950,
-    createAt: 1000
+    createdAt: 1000
   })
 );
 

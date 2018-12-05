@@ -12,7 +12,7 @@ export default class ExpenseForm extends React.Component {
       description: props.expense ? props.expense.description : "",
       note: props.expense ? props.expense.note : "",
       amount: props.expense ? (props.expense.amount / 100): "",
-      createdAt: props.expense ? moment(props.expense.createAt) : moment(),
+      createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
       calendarFocused: false,
       error: ''
     }
@@ -55,7 +55,7 @@ export default class ExpenseForm extends React.Component {
       this.props.onSubmit({
         description: this.state.description,
         amount: parseFloat(this.state.amount, 10) * 100,
-        createdAt: this.state.createdAt,
+        createdAt: this.state.createdAt.valueOf(),
         note: this.state.note
       })
     }
